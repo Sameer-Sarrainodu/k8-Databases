@@ -42,11 +42,11 @@ spec:
           image: sameershaikdevops/shipping:v1
           resources:
             requests:
-              cpu: "500m"
-              memory: "500Mi"
+              cpu: "200m"
+              memory: "256Mi"
             limits:
-              cpu: "1"
-              memory: "1Gi"
+              cpu: "400m"
+              memory: "512Mi"
           envFrom:
             - configMapRef:
                 name: shipping
