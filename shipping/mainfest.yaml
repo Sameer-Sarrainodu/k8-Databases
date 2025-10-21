@@ -38,18 +38,18 @@ spec:
         tier: app
     spec:
       containers:
-      - name: shipping
-        image: sameershaikdevops/shipping:v1
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "256Mi"
-          limits:
-            cpu: "200m"
-            memory: "512Mi"
-        envFrom:
-        - configMapRef:
-            name: shipping
+        - name: shipping
+          image: joindevops/shipping:v1
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+          envFrom:
+            - configMapRef:
+                name: shipping
 ---
 apiVersion: v1
 kind: Service
@@ -66,9 +66,9 @@ spec:
     project: roboshop
     tier: app
   ports:
-  - protocol: TCP
-    port: 8080 # service port
-    targetPort: 8080 # container port
+    - protocol: TCP
+      port: 8080 # service port
+      targetPort: 8080 # container port
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -83,9 +83,9 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 10
