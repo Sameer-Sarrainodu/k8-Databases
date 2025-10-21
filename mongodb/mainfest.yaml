@@ -8,7 +8,7 @@ metadata:
     project: roboshop
     tier: database
 spec:
-  clusterIP: none
+  clusterIP: None
   selector:
     component: mongodb
     project: roboshop
@@ -38,7 +38,7 @@ spec:
       targetPort: 27017
 ---
 apiVersion: apps/v1
-kind: Statefulset
+kind: StatefulSet
 metadata:
   name: mongodb
   namespace: roboshop
@@ -67,12 +67,12 @@ spec:
           volumeMounts:
             - name: mongodb-data
               mountPath: /data/db
-volumeClaimTemplates:
-  - metadata:
-      name: mongodb-data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: "roboshop-ebs"
-      resources:
-        requests:
-          storage: 2Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: mongodb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "roboshop-ebs"
+        resources:
+          requests:
+            storage: 2Gi
